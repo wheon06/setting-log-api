@@ -1,8 +1,8 @@
 package com.wheon.settinglogapi.domain.wallSettingSchedule;
 
-import com.wheon.settinglogapi.domain.wall.Wall;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import com.wheon.settinglogapi.domain.wall.Wall;
 
 import java.time.LocalDate;
 

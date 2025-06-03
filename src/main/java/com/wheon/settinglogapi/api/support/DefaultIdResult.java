@@ -1,8 +1,7 @@
 package com.wheon.settinglogapi.api.support;
 
-
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.AllArgsConstructor;
 
 @Getter
 @AllArgsConstructor

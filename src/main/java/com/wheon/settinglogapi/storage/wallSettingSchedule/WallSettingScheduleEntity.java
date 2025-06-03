@@ -2,7 +2,6 @@ package com.wheon.settinglogapi.storage.wallSettingSchedule;
 
 import com.wheon.settinglogapi.storage.wall.WallEntity;
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 
 @Entity

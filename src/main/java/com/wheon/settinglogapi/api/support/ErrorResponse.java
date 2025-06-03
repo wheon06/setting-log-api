@@ -1,8 +1,7 @@
 package com.wheon.settinglogapi.api.support;
 
-import com.wheon.settinglogapi.api.exception.ExceptionCode;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import com.wheon.settinglogapi.api.exception.ExceptionCode;
 
 @Getter
 public class ErrorResponse {

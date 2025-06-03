@@ -1,10 +1,10 @@
 package com.wheon.settinglogapi.storage.center;
 
-import com.wheon.settinglogapi.domain.center.Center;
-import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import com.wheon.settinglogapi.domain.center.Center;
+import jakarta.persistence.*;
 
 @Getter
 @Entity

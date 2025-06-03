@@ -1,8 +1,8 @@
 package com.wheon.settinglogapi.storage.center;
 
+import lombok.RequiredArgsConstructor;
 import com.wheon.settinglogapi.domain.center.Center;
 import com.wheon.settinglogapi.domain.center.CenterRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 @Repository

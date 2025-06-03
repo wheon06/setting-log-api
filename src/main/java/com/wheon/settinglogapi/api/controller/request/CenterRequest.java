@@ -1,8 +1,8 @@
 package com.wheon.settinglogapi.api.controller.request;
 
+import lombok.Getter;
 import com.wheon.settinglogapi.domain.center.Center;
 import jakarta.validation.constraints.NotEmpty;
-import lombok.Getter;
 
 @Getter
 public class CenterRequest {
