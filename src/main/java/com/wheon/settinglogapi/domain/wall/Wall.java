@@ -8,8 +8,8 @@ import com.wheon.settinglogapi.domain.center.Center;
 @RequiredArgsConstructor
 public class Wall {
 
-    private final Long id;
-    private final Center center;
-    private final String name;
+    private Long id;
+    private Center center;
+    private String name;
 
 }

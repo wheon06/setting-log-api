@@ -1,13 +1,14 @@
 package com.wheon.settinglogapi.domain.center;
 
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
 @Getter
-@RequiredArgsConstructor
 public class Center {
 
-    private final Long id;
-    private final String name;
+    private Long id;
+    private String name;
 
+    public Center(String name) {
+        this.name = name;
+    }
 }

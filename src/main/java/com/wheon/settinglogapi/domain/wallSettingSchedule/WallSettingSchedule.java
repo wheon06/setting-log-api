@@ -10,9 +10,9 @@ import java.time.LocalDate;
 @RequiredArgsConstructor
 public class WallSettingSchedule {
 
-    private final Long id;
-    private final Wall wall;
-    private final LocalDate settingDate;
-    private final LocalDate teardownDate;
+    private Long id;
+    private Wall wall;
+    private LocalDate settingDate;
+    private LocalDate teardownDate;
 
 }

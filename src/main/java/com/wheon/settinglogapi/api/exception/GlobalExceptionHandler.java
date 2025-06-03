@@ -23,14 +23,14 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     // @Valid 에서 검증이 실패되었을 때
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
-            final MethodArgumentNotValidException e,
-            final HttpHeaders headers,
-            final HttpStatusCode status,
-            final WebRequest request
+            MethodArgumentNotValidException e,
+            HttpHeaders headers,
+            HttpStatusCode status,
+            WebRequest request
     ) {
         log.warn(e.getMessage());
 
-        final String errorMessage = Objects.requireNonNull(e.getBindingResult().getFieldError()).getDefaultMessage();
+        String errorMessage = Objects.requireNonNull(e.getBindingResult().getFieldError()).getDefaultMessage();
         return ResponseEntity.ok(ApiResponse.error(
                 new ErrorResponse(INVALID_REQUEST.getCode(), errorMessage))
         );
@@ -39,10 +39,10 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     // Post 요청에서 본문이 없을 때
     @Override
     protected ResponseEntity<Object> handleHttpMessageNotReadable(
-            final HttpMessageNotReadableException e,
-            final HttpHeaders headers,
-            final HttpStatusCode status,
-            final WebRequest request
+            HttpMessageNotReadableException e,
+            HttpHeaders headers,
+            HttpStatusCode status,
+            WebRequest request
     ) {
         log.warn(e.getMessage());
         return ResponseEntity.ok(ApiResponse.error(new ErrorResponse(INVALID_REQUEST)));
@@ -51,10 +51,10 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     // 요청 HTTP 메서드 불일치 시
     @Override
     protected ResponseEntity<Object> handleHttpRequestMethodNotSupported(
-            final HttpRequestMethodNotSupportedException e,
-            final HttpHeaders headers,
-            final HttpStatusCode status,
-            final WebRequest request
+            HttpRequestMethodNotSupportedException e,
+            HttpHeaders headers,
+            HttpStatusCode status,
+            WebRequest request
     ) {
         log.warn(e.getMessage());
         return ResponseEntity.ok(ApiResponse.error(new ErrorResponse(INVALID_HTTP_METHOD)));
@@ -62,11 +62,11 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @Override
     protected ResponseEntity<Object> handleExceptionInternal(
-            final Exception e,
-            final Object body,
-            final HttpHeaders headers,
-            final HttpStatusCode statusCode,
-            final WebRequest request
+            Exception e,
+            Object body,
+            HttpHeaders headers,
+            HttpStatusCode statusCode,
+            WebRequest request
     ) {
         log.error(e.getMessage(), e);
         return ResponseEntity.ok(ApiResponse.error(new ErrorResponse(INTERNAL_SERVER_ERROR)));
