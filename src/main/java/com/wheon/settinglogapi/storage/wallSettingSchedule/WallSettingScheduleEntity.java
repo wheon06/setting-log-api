@@ -1,14 +1,13 @@
 package com.wheon.settinglogapi.storage.wallSettingSchedule;
 
-import com.wheon.settinglogapi.domain.wall.Wall;
-import com.wheon.settinglogapi.storage.wall.WallJpaEntity;
+import com.wheon.settinglogapi.storage.wall.WallEntity;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "wall_setting_schedule_tb")
-public class WallSettingScheduleJpaEntity {
+public class WallSettingScheduleEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,7 +15,7 @@ public class WallSettingScheduleJpaEntity {
 
     @JoinColumn(name = "wall_id")
     @ManyToOne(fetch = FetchType.LAZY)
-    private WallJpaEntity wall;
+    private WallEntity wall;
 
     private LocalDate settingDate;
 

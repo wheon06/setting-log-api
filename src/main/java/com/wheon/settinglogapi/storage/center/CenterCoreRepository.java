@@ -13,8 +13,8 @@ public class CenterCoreRepository implements CenterRepository {
 
     @Override
     public Long save(Center center) {
-        CenterJpaEntity centerJpaEntity = centerJpaRepository.save(CenterJpaEntity.of(center));
-        return centerJpaEntity.getId();
+        CenterEntity centerEntity = centerJpaRepository.save(CenterEntity.of(center));
+        return centerEntity.getId();
     }
 
 }

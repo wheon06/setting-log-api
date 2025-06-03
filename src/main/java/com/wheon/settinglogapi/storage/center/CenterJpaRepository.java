@@ -4,5 +4,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CenterJpaRepository extends JpaRepository<CenterJpaEntity, Long> {
+public interface CenterJpaRepository extends JpaRepository<CenterEntity, Long> {
 }

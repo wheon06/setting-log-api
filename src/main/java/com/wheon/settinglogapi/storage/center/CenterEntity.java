@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "center_tb")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class CenterJpaEntity {
+public class CenterEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,13 +18,13 @@ public class CenterJpaEntity {
 
     private String name;
 
-    public static CenterJpaEntity of(
+    public static CenterEntity of(
             Center center
     ) {
-        return new CenterJpaEntity(center.getName());
+        return new CenterEntity(center.getName());
     }
 
-    private CenterJpaEntity(String name) {
+    private CenterEntity(String name) {
         this.name = name;
     }
 }
