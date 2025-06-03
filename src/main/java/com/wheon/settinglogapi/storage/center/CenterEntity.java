@@ -24,6 +24,10 @@ public class CenterEntity {
         return new CenterEntity(center.getName());
     }
 
+    public Center toDomain() {
+        return new Center(this.id, this.name);
+    }
+
     private CenterEntity(String name) {
         this.name = name;
     }

@@ -8,8 +8,11 @@ import org.springframework.stereotype.Service;
 public class CenterCoreService {
 
     private final CenterAppender centerAppender;
+    private final CenterValidator centerValidator;
 
     public Long append(Center center) {
+        centerValidator.validateNameUnique(center.getName());
+
         return centerAppender.append(center);
     }
 

@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import com.wheon.settinglogapi.domain.center.Center;
 import com.wheon.settinglogapi.domain.center.CenterRepository;
 import org.springframework.stereotype.Repository;
+import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -15,6 +16,12 @@ public class CenterCoreRepository implements CenterRepository {
     public Long save(Center center) {
         CenterEntity centerEntity = centerJpaRepository.save(CenterEntity.of(center));
         return centerEntity.getId();
+    }
+
+    @Override
+    public Optional<Center> findByName(String name) {
+        return centerJpaRepository.findByName(name)
+                .map(CenterEntity::toDomain);
     }
 
 }
