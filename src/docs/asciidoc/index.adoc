@@ -1,0 +1,22 @@
+= API Documentation
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 3
+:sectlinks:
+:snippets: build/generated-snippets
+
+== Introduce
+
+This is the Core API documentation
+
+== Center API
+
+=== Append Center API
+==== Http Request
+include::{snippets}/center-append/http-request.adoc[]
+==== Http Response
+include::{snippets}/center-append/http-response.adoc[]
+
+'''
