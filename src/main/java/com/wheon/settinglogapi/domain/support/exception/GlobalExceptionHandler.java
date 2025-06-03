@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
+
 import java.util.Objects;
 
 @Slf4j
@@ -63,6 +65,17 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     ) {
         log.warn(e.getMessage());
         return ResponseEntity.ok(ApiResponse.error(new ErrorResponse(ExceptionCode.INVALID_HTTP_METHOD)));
+    }
+
+    @Override
+    protected ResponseEntity<Object> handleNoResourceFoundException(
+            NoResourceFoundException e,
+            HttpHeaders headers,
+            HttpStatusCode status,
+            WebRequest request
+    ) {
+        log.warn(e.getMessage());
+        return ResponseEntity.ok(ApiResponse.error(new ErrorResponse(ExceptionCode.NOT_FOUND_REQUEST)));
     }
 
     @Override
