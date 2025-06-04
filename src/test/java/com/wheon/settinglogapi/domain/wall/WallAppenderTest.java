@@ -1,6 +1,6 @@
 package com.wheon.settinglogapi.domain.wall;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anySet;
 import static org.mockito.BDDMockito.given;
@@ -37,7 +37,7 @@ class WallAppenderTest {
         Long successId = wallAppender.append(wall);
 
         // then
-        assertEquals(1L, successId);
+        assertThat(successId).isEqualTo(1L);
     }
 
     @Test
@@ -56,6 +56,6 @@ class WallAppenderTest {
         Set<Long> successIds = wallAppender.appendBulk(walls);
 
         // then
-        assertEquals(Set.of(1L, 2L), successIds);
+        assertThat(successIds).isEqualTo(Set.of(1L, 2L));
     }
 }

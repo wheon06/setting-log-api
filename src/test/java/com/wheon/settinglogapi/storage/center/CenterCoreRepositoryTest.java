@@ -1,5 +1,10 @@
 package com.wheon.settinglogapi.storage.center;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.BDDMockito.given;
+
 import lombok.RequiredArgsConstructor;
 import com.wheon.settinglogapi.domain.center.Center;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -8,13 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-
 import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
 @RequiredArgsConstructor
@@ -39,7 +38,7 @@ class CenterCoreRepositoryTest {
         Long successId = centerCoreRepository.save(center);
 
         // then
-        assertEquals(CenterEntity.of(center).getId(), successId);
+        assertThat(successId).isEqualTo(CenterEntity.of(center).getId());
     }
 
     @Test
@@ -52,6 +51,7 @@ class CenterCoreRepositoryTest {
                 .willReturn(Optional.of(CenterEntity.of(center)));
 
         // when & than
-        assertTrue(centerCoreRepository.findByName("더클라임 문래").isPresent());
+        assertThat(centerCoreRepository.findByName("더클라임 문래"))
+                .isPresent();
     }
 }

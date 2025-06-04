@@ -1,5 +1,9 @@
 package com.wheon.settinglogapi.domain.center;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.BDDMockito.given;
+
 import com.wheon.settinglogapi.domain.support.exception.CoreException;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.DisplayName;
@@ -7,12 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-
 import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
 class CenterValidatorTest {
@@ -32,9 +31,10 @@ class CenterValidatorTest {
         given(centerRepository.findByName(anyString())).willReturn(Optional.of(existingCenter));
 
         // when & then
-        assertThrows(CoreException.class,
-                () -> centerValidator.validateNameUnique("더클라임 문래")
-        );
+        assertThatThrownBy(() -> centerValidator.validateNameUnique("더클라임 문래"))
+                .isInstanceOf(CoreException.class)
+                .extracting("code")
+                .isEqualTo("E2001");
     }
 
 }
