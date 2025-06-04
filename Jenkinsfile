@@ -14,7 +14,7 @@ pipeline {
 			        steps {
 			            sh """
                             docker build \
-                             --build-arg DB_HOST=${DB_HOST} \
+                            --build-arg DB_HOST=${DB_HOST} \
                             --build-arg DB_PORT=${DB_PORT} \
                             --build-arg DB_NAME=${DB_NAME} \
                             --build-arg DB_PASSWORD=${DB_PASSWORD} \
