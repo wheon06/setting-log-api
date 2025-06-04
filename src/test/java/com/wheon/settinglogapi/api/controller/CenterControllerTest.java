@@ -10,6 +10,7 @@ import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.wheon.settinglogapi.api.controller.request.CenterRequest;
+import com.wheon.settinglogapi.api.controller.request.WallRequest;
 import com.wheon.settinglogapi.domain.center.Center;
 import com.wheon.settinglogapi.domain.center.CenterCoreService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @WebMvcTest(CenterController.class)
 @AutoConfigureRestDocs(outputDir = "build/generated-snippets")
@@ -39,7 +43,11 @@ class CenterControllerTest {
     @DisplayName("센터를 추가할 수 있다.")
     void appendCenter() throws Exception {
         // given
-        CenterRequest centerRequest = new CenterRequest("더클라임 문래");
+        Set<WallRequest> wallRequests = new HashSet<>(Set.of(
+                new WallRequest("망치"),
+                new WallRequest("모루")
+        ));
+        CenterRequest centerRequest = new CenterRequest("더클라임 문래", wallRequests);
 
         when(centerCoreService.append(any(Center.class)))
                 .thenReturn(1L);
@@ -53,7 +61,9 @@ class CenterControllerTest {
                         preprocessRequest(prettyPrint()),
                         preprocessResponse(prettyPrint()),
                         requestFields(
-                                fieldWithPath("name").description("추가할 센터 이름")
+                                fieldWithPath("name").description("추가할 센터 이름"),
+                                fieldWithPath("walls").description("센터 벽(섹터) 정보 목록"),
+                                fieldWithPath("walls[].name").description("벽(섹터) 이름")
                         ),
                         responseFields(
                                 fieldWithPath("resultType").description("응답 결과 타입"),

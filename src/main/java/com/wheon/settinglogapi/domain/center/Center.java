@@ -2,6 +2,7 @@ package com.wheon.settinglogapi.domain.center;
 
 import lombok.Getter;
 import com.wheon.settinglogapi.domain.wall.Wall;
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -9,7 +10,7 @@ public class Center {
 
     private Long id;
     private String name;
-    private Set<Wall> walls;
+    private Set<Wall> walls = new HashSet<>();
 
     public void addWall(Wall wall) {
         this.walls.add(wall);

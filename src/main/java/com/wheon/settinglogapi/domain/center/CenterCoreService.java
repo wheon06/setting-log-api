@@ -12,7 +12,6 @@ public class CenterCoreService {
 
     public Long append(Center center) {
         centerValidator.validateNameUnique(center.getName());
-
         return centerAppender.append(center);
     }
 
