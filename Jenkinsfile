@@ -18,14 +18,14 @@ pipeline {
                             string(credentialsId: 'DB_PASSWORD', variable: 'DB_PASSWORD'),
                             string(credentialsId: 'DB_NAME', variable: 'DB_NAME'),
                         ]) {
-                            sh """
+                            sh '''
                                 docker build \
                                 --build-arg DB_HOST=${DB_HOST} \
                                 --build-arg DB_PORT=${DB_PORT} \
                                 --build-arg DB_NAME=${DB_NAME} \
                                 --build-arg DB_PASSWORD=${DB_PASSWORD} \
                                 -t setting-log-api:latest .
-                            """
+                            '''
                         }
                     }
 			    }
