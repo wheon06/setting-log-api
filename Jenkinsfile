@@ -8,11 +8,18 @@ pipeline {
             }
 		}
 
+        stage('Test') {
+            steps {
+                sh './gradlew clean test'
+            }
+        }
+
 		stage('Build And Deploy') {
 			stages {
 			    stage('Build') {
 			        steps {
                         sh '''
+                            mkdir -p build/generated-snippets
                             docker build -t setting-log-api:latest .
                         '''
                     }

@@ -6,6 +6,8 @@ COPY . /app
 
 RUN chmod +x ./gradlew
 
+RUN mkdir -p build/generated-snippets
+
 RUN ./gradlew clean build -x test asciidoctor
 
 FROM openjdk:21-slim
