@@ -12,7 +12,14 @@ pipeline {
 			stages {
 			    stage('Build') {
 			        steps {
-			            sh 'docker build -t setting-log-api:latest .'
+			            sh """
+                            docker build \
+                             --build-arg DB_HOST=${DB_HOST} \
+                            --build-arg DB_PORT=${DB_PORT} \
+                            --build-arg DB_NAME=${DB_NAME} \
+                            --build-arg DB_PASSWORD=${DB_PASSWORD} \
+                            -t setting-log-api:latest .
+                        """
 			        }
 			    }
 
