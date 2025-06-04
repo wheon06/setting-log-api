@@ -5,7 +5,6 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 
-import lombok.RequiredArgsConstructor;
 import com.wheon.settinglogapi.domain.center.Center;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.DisplayName;
@@ -16,7 +15,6 @@ import org.mockito.Mock;
 import java.util.Optional;
 
 @ExtendWith(MockitoExtension.class)
-@RequiredArgsConstructor
 class CenterCoreRepositoryTest {
 
     @InjectMocks
