@@ -13,6 +13,7 @@ import com.wheon.settinglogapi.api.controller.request.CenterRequest;
 import com.wheon.settinglogapi.api.controller.request.WallRequest;
 import com.wheon.settinglogapi.domain.center.Center;
 import com.wheon.settinglogapi.domain.center.CenterCoreService;
+import com.wheon.settinglogapi.domain.center.CenterWithWalls;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -49,7 +50,7 @@ class CenterControllerTest {
         ));
         CenterRequest centerRequest = new CenterRequest("더클라임 문래", wallRequests);
 
-        when(centerCoreService.append(any(Center.class)))
+        when(centerCoreService.append(any(CenterWithWalls.class)))
                 .thenReturn(1L);
 
         // when

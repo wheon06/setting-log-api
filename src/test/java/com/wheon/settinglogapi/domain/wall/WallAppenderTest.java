@@ -6,6 +6,7 @@ import static org.mockito.ArgumentMatchers.anySet;
 import static org.mockito.BDDMockito.given;
 
 import com.wheon.settinglogapi.domain.center.Center;
+import com.wheon.settinglogapi.domain.center.CenterWithWalls;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -29,12 +30,12 @@ class WallAppenderTest {
     void append() {
         // given
         Center center = new Center("더클라임 문래");
-        Wall wall = new Wall(center, "망치");
+        Wall wall = new Wall("망치");
 
-        given(wallRepository.save(any(Wall.class))).willReturn(1L);
+        given(wallRepository.save(any(Wall.class), any(Center.class))).willReturn(1L);
 
         // when
-        Long successId = wallAppender.append(wall);
+        Long successId = wallAppender.append(wall, center);
 
         // then
         assertThat(successId).isEqualTo(1L);
@@ -46,14 +47,15 @@ class WallAppenderTest {
         // given
         Center center = new Center("더클라임 문래");
         Set<Wall> walls = new HashSet<>(Set.of(
-                new Wall(center, "망치"),
-                new Wall(center, "모루")
+                new Wall("망치"),
+                new Wall("모루")
         ));
+        CenterWithWalls centerWithWalls = new CenterWithWalls(center, walls);
 
-        given(wallRepository.saveBulk(anySet())).willReturn(Set.of(1L, 2L));
+        given(wallRepository.saveBulk(any(CenterWithWalls.class))).willReturn(Set.of(1L, 2L));
 
         // when
-        Set<Long> successIds = wallAppender.appendBulk(walls);
+        Set<Long> successIds = wallAppender.appendBulk(centerWithWalls);
 
         // then
         assertThat(successIds).isEqualTo(Set.of(1L, 2L));

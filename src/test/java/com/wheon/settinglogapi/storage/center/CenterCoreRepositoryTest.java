@@ -5,10 +5,10 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 
-import com.wheon.settinglogapi.domain.center.Center;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import com.wheon.settinglogapi.domain.center.Center;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -33,7 +33,7 @@ class CenterCoreRepositoryTest {
                 .willReturn(CenterEntity.of(center));
 
         // when
-        Long successId = centerCoreRepository.save(center);
+        Long successId = centerCoreRepository.save(center).getId();
 
         // then
         assertThat(successId).isEqualTo(CenterEntity.of(center).getId());
