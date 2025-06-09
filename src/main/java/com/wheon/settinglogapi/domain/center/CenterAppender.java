@@ -15,7 +15,8 @@ public class CenterAppender {
     @Transactional
     public Long append(CenterWithWalls centerWithWalls) {
         Center center = centerRepository.save(centerWithWalls.getCenter());
-        wallAppender.appendBulk(centerWithWalls);
+        CenterWithWalls hasSavedCenter = new CenterWithWalls(center, centerWithWalls.getWalls());
+        wallAppender.appendBulk(hasSavedCenter);
         return center.getId();
     }
 

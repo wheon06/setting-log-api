@@ -15,7 +15,6 @@ public class CenterCoreRepository implements CenterRepository {
     @Override
     public Center save(Center center) {
         CenterEntity result = centerJpaRepository.save(CenterEntity.of(center));
-        centerJpaRepository.flush();
         return result.toDomain();
     }
 
