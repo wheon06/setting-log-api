@@ -13,6 +13,9 @@ public enum ExceptionCode {
 
     DUPLICATED_CENTER_NAME("E2001", "중복된 센터 이름입니다."),
 
+    NOT_FOUND_CENTER("E3001", "센터를 찾을 수 없습니다."),
+    NOT_FOUND_WALL("E3002", "벽을 찾을 수 없습니다."),
+
     INTERNAL_SERVER_ERROR("E9999", "서버 오류입니다.");
 
     private final String code;

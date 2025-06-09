@@ -13,9 +13,16 @@ public class CenterCoreRepository implements CenterRepository {
     private final CenterJpaRepository centerJpaRepository;
 
     @Override
-    public Long save(Center center) {
+    public Center save(Center center) {
         CenterEntity result = centerJpaRepository.save(CenterEntity.of(center));
-        return result.getId();
+        centerJpaRepository.flush();
+        return result.toDomain();
+    }
+
+    @Override
+    public Optional<Center> findById(Long id) {
+        return centerJpaRepository.findById(id)
+                .map(CenterEntity::toDomain);
     }
 
     @Override

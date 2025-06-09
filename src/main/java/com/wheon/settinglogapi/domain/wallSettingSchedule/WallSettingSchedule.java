@@ -1,18 +1,19 @@
 package com.wheon.settinglogapi.domain.wallSettingSchedule;
 
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import com.wheon.settinglogapi.domain.wall.Wall;
-
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 import java.time.LocalDate;
 
 @Getter
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class WallSettingSchedule {
 
     private Long id;
-    private Wall wall;
-    private LocalDate settingDate;
+    private LocalDate lastSettingDate;
+    private LocalDate nextSettingDate;
     private LocalDate teardownDate;
 
 }

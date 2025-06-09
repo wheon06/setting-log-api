@@ -1,37 +1,41 @@
 package com.wheon.settinglogapi.storage.wall;
 
-import lombok.Getter;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import com.wheon.settinglogapi.domain.wall.Wall;
-import com.wheon.settinglogapi.storage.center.CenterEntity;
+import com.wheon.settinglogapi.domain.center.Center;
 import jakarta.persistence.*;
 
 @Getter
 @Entity
 @Table(name = "wall_tb")
+@AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class WallEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @JoinColumn(name = "center_id")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private CenterEntity center;
-
+    private Long centerId;
     private String name;
 
-    public static WallEntity of(Wall wall) {
+    public Wall toDomain() {
+        return new Wall(
+                this.id,
+                this.name
+        );
+    }
+
+    public static WallEntity of(Wall wall, Center center) {
         return new WallEntity(
-                CenterEntity.of(wall.getCenter()),
+                wall.getId(),
+                center.getId(),
                 wall.getName()
         );
     }
 
-    public WallEntity(CenterEntity center, String name) {
-        this.center = center;
+    public WallEntity(Long centerId, String name) {
+        this.centerId = centerId;
         this.name = name;
     }
+
 }

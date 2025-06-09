@@ -3,17 +3,18 @@ package com.wheon.settinglogapi.domain.support.exception;
 import lombok.extern.slf4j.Slf4j;
 import com.wheon.settinglogapi.api.support.ApiResponse;
 import com.wheon.settinglogapi.api.support.ErrorResponse;
-import org.springframework.http.HttpHeaders;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
+import org.springframework.web.context.request.WebRequest;
 
 import java.util.Objects;
 
@@ -76,6 +77,11 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     ) {
         log.warn(e.getMessage());
         return ResponseEntity.ok(ApiResponse.error(new ErrorResponse(ExceptionCode.NOT_FOUND_REQUEST)));
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<Object> handleAllExceptions(Exception e, WebRequest request) {
+        return handleExceptionInternal(e, null, new HttpHeaders(), HttpStatus.OK, request);
     }
 
     @Override

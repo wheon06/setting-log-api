@@ -6,7 +6,9 @@ import java.util.Optional;
 @Repository
 public interface CenterRepository {
 
-    Long save(Center center);
+    Center save(Center center);
+
+    Optional<Center> findById(Long id);
 
     Optional<Center> findByName(String name);
 

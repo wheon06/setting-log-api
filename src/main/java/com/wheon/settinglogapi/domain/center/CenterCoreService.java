@@ -10,9 +10,10 @@ public class CenterCoreService {
     private final CenterAppender centerAppender;
     private final CenterValidator centerValidator;
 
-    public Long append(Center center) {
+    public Long append(CenterWithWalls centerWithWalls) {
+        Center center = centerWithWalls.getCenter();
         centerValidator.validateNameUnique(center.getName());
-        return centerAppender.append(center);
+        return centerAppender.append(centerWithWalls);
     }
 
 }

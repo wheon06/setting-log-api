@@ -13,10 +13,10 @@ public class CenterAppender {
     private final CenterRepository centerRepository;
 
     @Transactional
-    public Long append(Center center) {
-        Long successId = centerRepository.save(center);
-        wallAppender.appendBulk(center.getWalls());
-        return successId;
+    public Long append(CenterWithWalls centerWithWalls) {
+        Center center = centerRepository.save(centerWithWalls.getCenter());
+        wallAppender.appendBulk(centerWithWalls);
+        return center.getId();
     }
 
 }
